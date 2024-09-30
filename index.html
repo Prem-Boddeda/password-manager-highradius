@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Password Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <nav>
+        <div style="display: flex; align-items: center;">
+            <img src="https://mms.businesswire.com/media/20230214005144/en/1712172/4/Web-Use-Logo-2020.jpg?download=1" alt="Logo" style="height: 50px; width: 150px;">
+            <h1>Password Manager</h1>
+        </div>
+        <div>
+            <span class="nav-link active" onclick="showSection('login')">Login</span>
+            <span class="nav-link" onclick="showSection('passwordManager')">Manager</span>
+            <span class="nav-link" onclick="logout()">Logout</span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div id="login" class="section">
+            <h2>Login</h2>
+            <div class="login-form">
+                <input type="text" id="username" placeholder="Username">
+                <input type="password" id="password" placeholder="Password">
+                <button class="btn btn-primary" onclick="login()">Login</button>
+                <p id="loginError" style="color: red;"></p>
+            </div>
+        </div>
+
+        <div id="passwordManager" class="section hidden">
+            <h2>Manage Passwords</h2>
+            <h3>Welcome, <span id="roleDisplay"></span>!</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Application</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="passwordTable">
+                </tbody>
+            </table>
+            <div class="password-form hidden" id="addPasswordForm">
+                <h3>Add Password</h3>
+                <input type="text" id="appName" placeholder="Application Name" required>
+                <input type="text" id="passwordUsername" placeholder="Username" required>
+                <input type="password" id="passwordValue" placeholder="Password" required>
+                <button class="btn btn-primary" onclick="addPassword()">Add</button>
+            </div>
+            <button class="btn btn-primary" onclick="toggleAddPasswordForm()">Toggle Add Password Form</button>
+        </div>
+    </div>
+
+    <!-- Edit Card -->
+    <div id="editCard" class="card hidden">
+        <span class="close-btn" onclick="closeCard('editCard')">&times;</span>
+        <h3>Edit Password</h3>
+        <input type="text" id="editAppName" placeholder="Application Name">
+        <input type="text" id="editUsername" placeholder="Username">
+        <input type="password" id="editPassword" placeholder="Password">
+        <button class="btn btn-primary" onclick="saveEdit()">Save Changes</button>
+    </div>
+
+    <!-- Delete Confirmation Card -->
+    <div id="deleteCard" class="card hidden">
+        <span class="close-btn" onclick="closeCard('deleteCard')">&times;</span>
+        <h3>Are you sure you want to delete?</h3>
+        <button class="btn btn-danger" onclick="confirmDelete()">Yes</button>
+        <button class="btn btn-secondary" onclick="closeCard('deleteCard')">No</button>
+    </div>
+
+   
+</body>
+</html>
